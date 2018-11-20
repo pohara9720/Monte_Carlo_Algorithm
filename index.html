@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Monte Carlo</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link href="https://fonts.googleapis.com/css?family=Poppins" rel="stylesheet">
+	<link rel="stylesheet" type="text/css" href="styles.css">
+</head>
+<body>
+	<h1>Monte Carlo PI Approximation</h1>
+	<p><code id="data"></code></p>
+	<canvas id="canvas" height='500' width="500" class="canvas"></canvas>
+	<h4>Click to run the Monte Carlo Algorithm to approximate PI</h4>
+	<button id="start" onclick='approxPi()'>Run</button>
+</body>
+<script type="text/javascript">
+
+	// PI = circumference / diameter
+	// distance = squarert( (x1 - x2)2 + (y1 - y2)2)
+	// Pi will roughly = the amount of dots in cirlce/total dots 
+
+
+	const canvas = document.getElementById('canvas')
+	const context = canvas.getContext('2d')
+	const radius = canvas.width
+	let inCircle = 0
+	let outsideCircle = 0
+	let timer = 30
+
+	// Draw circle in squarer
+
+	const loadCanvas = () => {
+		document.getElementById('data').innerHTML = ''
+		context.clearRect(0,0,canvas.width,canvas.height)
+		inCircle = 0
+		outsideCircle = 0
+		timer = 120
+		context.beginPath()
+		context.arc(0,0,canvas.width,0,2 * Math.PI);
+		context.strokeStyle="white"
+		context.stroke()
+	}
+
+	loadCanvas()
+	
+	//Start algorithm
+
+	const approxPi = () => {
+		resetAnimation()
+		animate()
+	}
+
+
+	// Restart and reset values
+
+	const resetAnimation = () => {
+		displayButton()
+		loadCanvas()
+	}
+
+	//Show button
+
+	const displayButton = () => {
+		document.getElementById('start').style.display='flex'
+	}
+
+	// Run simulation
+
+	const animate = () => {
+		const draw = setInterval(() => drawDot(),0.05)
+		setInterval(() => timer --,1000)
+		setTimeout(() => {
+			clearTimeout(draw)
+			displayButton()
+		},120000)
+	}
+
+	//Draw dots where they need to be
+
+	const drawDot = () => {
+		document.getElementById('start').style.display='none'
+		const x = Math.floor((Math.random() * canvas.width) + 1)
+		const y = Math.floor((Math.random() * canvas.width) + 1)
+		const distance = Math.sqrt(x * x + y * y)
+		distance < radius ? (
+			context.fillStyle = '#00FF00',
+			context.fillRect(x,y,2,2),
+			inCircle ++
+		) 
+			: (
+			context.fillStyle = 'red', 
+			context.fillRect(x,y,2,2),
+			outsideCircle ++
+		)
+		const pi = (4 * (inCircle / (inCircle + outsideCircle)))
+		const message = 
+		`<h4>
+			<code>Simulation ending in ${timer} seconds <br>
+			&pi; &#8776; 4(${inCircle} dotsInCircle) / ${inCircle + outsideCircle} totalDots<br>
+			&pi; = ${pi}</code>
+		</h4>`
+		document.getElementById('data').innerHTML = message
+	}
+
+	
+</script>
+</html>

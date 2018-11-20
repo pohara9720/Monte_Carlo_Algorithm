@@ -1,0 +1,65 @@
+*:focus{
+	outline: none;
+}
+body{
+	margin:0;
+	font-family: 'Poppins', sans-serif;
+	display: flex;
+	flex-direction: column;
+	box-sizing: border-box;
+	align-items: center;
+	padding: 1em;
+	background: #757F9A;  /* fallback for old browsers */
+	background: -webkit-linear-gradient(to left, #D7DDE8, #757F9A);  /* Chrome 10-25, Safari 5.1-6 */
+	background: linear-gradient(to left, #D7DDE8, #757F9A); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+}
+h1,h4,p,code{
+	color: white;
+	text-align: center;
+}
+p{
+	padding: 0;
+	margin-top:-10px;
+
+}
+button{
+	border-radius: 10px;
+	background: #757F9A;  /* fallback for old browsers */
+	background: -webkit-linear-gradient(to left, #D7DDE8, #757F9A);  /* Chrome 10-25, Safari 5.1-6 */
+	background: linear-gradient(to left, #D7DDE8, #757F9A);
+	padding: 15px 60px;
+	width: 30%;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	color: white;
+	border-width: 0;
+	font-size: 20px;
+	cursor:pointer;
+	box-shadow: 0 4px 8px 0 rgba(0,0,0,0.12),
+            0 2px 4px 0 rgba(0,0,0,0.08);
+    margin-bottom: 100px;
+}
+.canvas{
+	border: 2px solid white;
+	width: 30%;
+}
+.canvas:after {
+  content: "";
+  display: block;
+}
+
+@media screen and (max-width: 1200px) {
+	body{
+		padding: 10px;
+	}
+	.canvas,button{
+		width: 50%;
+	}
+}
+
+@media screen and (max-width: 800px) {
+	.canvas,button{
+		width: 80%;
+	}
+}
