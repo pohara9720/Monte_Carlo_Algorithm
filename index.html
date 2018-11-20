@@ -26,7 +26,7 @@
 	const radius = canvas.width
 	let inCircle = 0
 	let outsideCircle = 0
-	let timer = 120
+	let timer = 60
 
 	// Draw circle in squarer
 
@@ -35,7 +35,7 @@
 		context.clearRect(0,0,canvas.width,canvas.height)
 		inCircle = 0
 		outsideCircle = 0
-		timer = 120
+		timer = 60
 		context.beginPath()
 		context.arc(0,0,canvas.width,0,2 * Math.PI);
 		context.strokeStyle="white"
