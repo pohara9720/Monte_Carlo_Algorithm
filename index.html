@@ -26,7 +26,7 @@
 	const radius = canvas.width
 	let inCircle = 0
 	let outsideCircle = 0
-	let timer = 30
+	let timer = 60
 
 	// Draw circle in squarer
 
@@ -35,7 +35,7 @@
 		context.clearRect(0,0,canvas.width,canvas.height)
 		inCircle = 0
 		outsideCircle = 0
-		timer = 120
+		timer = 60
 		context.beginPath()
 		context.arc(0,0,canvas.width,0,2 * Math.PI);
 		context.strokeStyle="white"
@@ -73,7 +73,7 @@
 		setTimeout(() => {
 			clearTimeout(draw)
 			displayButton()
-		},120000)
+		},60000)
 	}
 
 	//Draw dots where they need to be
@@ -96,7 +96,7 @@
 		const pi = (4 * (inCircle / (inCircle + outsideCircle)))
 		const message = 
 		`<h4>
-			<code>Simulation ending in ${timer} seconds <br>
+			<code>${ timer === 1 ? 'Simulation ended' : `Simulation ending in ${timer} seconds` }<br>
 			&pi; &#8776; 4(${inCircle} dotsInCircle) / ${inCircle + outsideCircle} totalDots<br>
 			&pi; = ${pi}</code>
 		</h4>`
